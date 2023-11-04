@@ -1,0 +1,148 @@
+.super-container {
+    max-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+    max-height: 90vh;
+    font-family: "Work Sans", sans-serif;
+    max-width: 75%;
+}
+.side-bar {
+    background-color: #1b3142;
+    color: #fff;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.side-bar--name {
+    margin: 5px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.side-bar--title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-block: 5px;
+}
+.side-bar--img-container img {
+    max-width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.side-bar--contact {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 8px;
+}
+.side-bar--contact li {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.side-bar--contact img {
+    width: 18px;
+    height: 18px;
+}
+.side-bar--contact p {
+    margin: 0;
+    font-size: 0.83rem;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #293f4e;
+    padding: 2px;
+}
+.header h2 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+.header img {
+    width: 22px;
+    height: 22px;
+}
+.languages ul,
+.awards ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.languages--level {
+    display: flex;
+    gap: 5px;
+}
+.languages li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.languages li p {
+    margin: 0px;
+}
+.languages span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #76767683;
+}
+.languages span.filled {
+    background-color: #fff;
+}
+p {
+    margin-block: 3px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.awards--title {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 50px 80px;
+}
+.main-content .header {
+    background-color: #efefef;
+    color: #000;
+}
+.experience > ul,
+.education--schools {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+h3 {
+    margin-block: 3px;
+    font-size: 1.1rem;
+}
+.experience--title {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 1rem;
+}
+.education--schools p {
+    margin-top: 0;
+    margin-bottom: 3px;
+}
+.skills ul {
+    padding: 0 0 0 13px;
+}
+.subtitle {
+    font-size: 1rem;
+}
