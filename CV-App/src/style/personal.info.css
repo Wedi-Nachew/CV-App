@@ -1,0 +1,18 @@
+.personal-info,
+.education {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+label {
+    font-size: 1.1rem;
+}
+input {
+    outline: none;
+    height: 25px;
+    width: 300px;
+    text-indent: 5px;
+    padding: 5px;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
