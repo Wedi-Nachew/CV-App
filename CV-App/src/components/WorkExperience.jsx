@@ -1,24 +1,19 @@
 import "../style/personal.info.css";
 
-export default function Education(props) {
+export default function WorkExperience(props) {
+    
     return (
-        <div className="education" onClick={() => props.currentId(props.id)}>
-            <label htmlFor="degree">Degree</label>
+        <div
+            className="work-experience"
+            onClick={() => props.activeId(props.id)}
+        >
+            <label htmlFor="degree">Employer</label>
             <input
                 type="text"
-                placeholder="Enter Degree/ Field Of Study/ Exchange Semester"
-                id="degree"
-                name="degree"
-                value={props.degree}
-                onChange={(event) => props.handleChange(event)}
-            />
-            <label htmlFor="school">School</label>
-            <input
-                type="text"
-                placeholder="Enter School/ University"
-                id="school"
-                name="school"
-                value={props.school}
+                placeholder="Enter Your Employer"
+                id="employer"
+                name="employer"
+                value={props.employer}
                 onChange={(event) => props.handleChange(event)}
             />
             <label htmlFor="city">City</label>
@@ -55,7 +50,13 @@ export default function Education(props) {
                 value={props.endDate}
                 onChange={(event) => props.handleChange(event)}
             />
-            
+            <label htmlFor="description">Description</label>
+            <textarea
+                id="description"
+                name="description"
+                value={props.description}
+                onChange={(event) => props.handleChange(event)}
+            />
         </div>
     );
 }

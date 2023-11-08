@@ -1,5 +1,6 @@
 .personal-info,
-.education {
+.education,
+.work-experience {
     display: flex;
     flex-direction: column;
     padding: 30px;
