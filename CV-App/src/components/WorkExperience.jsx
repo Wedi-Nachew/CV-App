@@ -1,11 +1,10 @@
 import "../style/personal.info.css";
 
 export default function WorkExperience(props) {
-    
     return (
         <div
             className="work-experience"
-            onClick={() => props.activeId(props.id)}
+            onClick={() => props.setActive(props.field)}
         >
             <label htmlFor="degree">Employer</label>
             <input

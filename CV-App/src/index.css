@@ -25,7 +25,7 @@ a:hover {
 
 body {
     margin: 0;
-    display: flex;
+    font-family: "Kay Pho Du", serif;
 }
 
 h1 {
@@ -44,9 +44,9 @@ button {
     cursor: pointer;
     transition: border-color 0.25s;
 }
-button:hover {
+/* button:hover {
     border-color: #646cff;
-}
+} */
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
@@ -63,4 +63,151 @@ button:focus-visible {
     button {
         background-color: #f9f9f9;
     }
+}
+nav {
+    display: flex;
+    align-items: center;
+    padding: 0 160px 0 80px;
+    max-width: 100%;
+    box-shadow: 0 0 5px #7c7c7c;
+    justify-content: space-between;
+}
+nav div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+nav img {
+    width: 40px;
+    height: 40px;
+}
+nav h2 {
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    gap: 4rem;
+}
+nav ul li {
+    font-size: 1.1rem;
+}
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 0 40px 0 40px;
+    min-height: 90vh;
+    margin-top: -20px;
+    font-family: "Kay Pho Du", serif;
+}
+.hero div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+}
+.hero h1 {
+    font-size: 3.1rem;
+    color: #000;
+    margin-block: 0;
+}
+.hero h4 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-block: 0;
+}
+.hero img {
+    max-width: 45%;
+}
+.hero button {
+    padding: 17px 33px;
+    background-color: rgb(30, 30, 110);
+    color: #fff;
+    box-shadow: 0 0 4px #f0eeeb;
+}
+.input-fields {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.input-fields button {
+    display: flex;
+    align-items: center;
+    padding: 3px 30px;
+    width: 50%;
+    gap: 15px;
+    background-color: #f0eeeb;
+}
+.input-fields button img {
+    width: 30px;
+    height: 30px;
+}
+.input-fields .drop-down,
+.input-fields img {
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+}
+.expanded {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+.expanded h2 {
+    margin: 8px;
+    align-self: flex-start;
+}
+.personal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    padding-left: 0;
+}
+.personal-info div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.personal-info div.contact,
+div.personal-info--top {
+    flex-direction: row;
+}
+div.personal-info--top > div:first-child {
+    gap: 17px;
+}
+.personal-info div.contact {
+    gap: 1.5rem;
+}
+.user-img {
+    align-self: center;
+    margin-left: auto;
+}
+.user-img img {
+    width: 30px;
+    height: 30px;
+}
+.user-img input {
+    display: none;
+}
+.personal-info label {
+    font-weight: 400;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+.personal-info input {
+    width: 250px;
+    font-family: inherit;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 10px;
+}
+input#email,
+input#tel {
+    width: 200px;
+}
+input#location {
+    width: 97%;
 }

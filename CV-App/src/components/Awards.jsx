@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import "../style/personal.info.css";
 export default function Awards(props) {
     return (
-        <div className="awards" onClick={() => props.activeAwardId(props.id)}>
+        <div className="awards" onClick={() => props.setActive(props.field)}>
             <label htmlFor="name">Award</label>
             <input
                 type="text"

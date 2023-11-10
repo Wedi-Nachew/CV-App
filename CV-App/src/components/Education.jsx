@@ -2,7 +2,7 @@ import "../style/personal.info.css";
 
 export default function Education(props) {
     return (
-        <div className="education" onClick={() => props.currentId(props.id)}>
+        <div className="education" onClick={() => props.setActive(props.field)}>
             <label htmlFor="degree">Degree</label>
             <input
                 type="text"
@@ -55,7 +55,6 @@ export default function Education(props) {
                 value={props.endDate}
                 onChange={(event) => props.handleChange(event)}
             />
-            
         </div>
     );
 }
