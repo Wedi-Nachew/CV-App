@@ -2,10 +2,7 @@ import { useState } from "react";
 
 export default function PersonalInfo(props) {
     return (
-        <div
-            className="personal-info"
-            onClick={() => props.field !== props.active ? props.setActive(props.field) : false }
-        >
+        <div className="personal-info">
             <div className="personal-info--top">
                 <div>
                     <div>
@@ -15,7 +12,7 @@ export default function PersonalInfo(props) {
                             type="text"
                             placeholder="Enter your title, first & last name"
                             id="name"
-                            value={props.fullName}
+                            value={props.active?.fullName}
                             onChange={(event) => props.handleChange(event)}
                         />
                     </div>
@@ -26,14 +23,14 @@ export default function PersonalInfo(props) {
                             type="text"
                             placeholder="Enter your job title"
                             id="job"
-                            value={props.job}
+                            value={props.active?.job}
                             onChange={(event) => props.handleChange(event)}
                         />
                     </div>
                 </div>
                 <div className="user-img">
                     <label htmlFor="img">
-                        <img src="/profile-black.svg" alt="" />
+                        <img src="/camera.svg" alt="" />
                     </label>
                     <input type="file" name="img" id="img" />
                 </div>
@@ -46,7 +43,7 @@ export default function PersonalInfo(props) {
                         type="email"
                         placeholder="Enter your email"
                         id="email"
-                        value={props.email}
+                        value={props.active?.email}
                         onChange={(event) => props.handleChange(event)}
                     />
                 </div>
@@ -57,7 +54,7 @@ export default function PersonalInfo(props) {
                         type="tel"
                         placeholder="Enter your phone number"
                         id="tel"
-                        value={props.tel}
+                        value={props.active?.tel}
                         onChange={(event) => props.handleChange(event)}
                     />
                 </div>
@@ -69,7 +66,7 @@ export default function PersonalInfo(props) {
                     type="text"
                     placeholder="City, Country"
                     id="location"
-                    value={props.location}
+                    value={props.active?.location}
                     onChange={(event) => props.handleChange(event)}
                 />
             </div>

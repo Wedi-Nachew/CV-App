@@ -132,21 +132,21 @@ nav ul li {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-.input-fields button {
-    display: flex;
-    align-items: center;
-    padding: 3px 30px;
-    width: 50%;
-    gap: 15px;
     background-color: #f0eeeb;
 }
-.input-fields button img {
+.input-fields > div {
+    display: flex;
+    padding: 20px 60px;
+    width: 50%;
+    position: relative;
+    flex-direction: column;
+    background-color: #fff;
+}
+.input-fields div img {
     width: 30px;
     height: 30px;
 }
-.input-fields .drop-down,
-.input-fields img {
+.input-fields .drop-down {
     width: 30px;
     height: 30px;
     margin-left: auto;
@@ -154,7 +154,7 @@ nav ul li {
 .expanded {
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    background-color: #fff;
 }
 .expanded h2 {
     margin: 8px;
@@ -186,28 +186,133 @@ div.personal-info--top > div:first-child {
     margin-left: auto;
 }
 .user-img img {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
 }
 .user-img input {
     display: none;
 }
-.personal-info label {
+label {
     font-weight: 400;
     margin-left: 10px;
     margin-bottom: 5px;
 }
 .personal-info input {
-    width: 250px;
+    max-width: 280px;
     font-family: inherit;
     border: none;
     border-radius: 10px;
     padding: 8px 10px;
+    background-color: #f0eeeb;
 }
 input#email,
 input#tel {
-    width: 200px;
+    max-width: 220px;
 }
 input#location {
-    width: 97%;
+    max-width: 80%;
+    width: 78%;
+}
+.profile-detail {
+    display: flex;
+    padding: 5px 80px 5px 40px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 10px;
+}
+.profile-detail div {
+    display: flex;
+    flex-direction: column;
+}
+.profile-detail div div {
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+    gap: 8px;
+}
+.profile-detail > div:last-child button {
+    margin-right: 110px;
+    margin-top: -70px;
+    position: absolute;
+}
+.profile-detail div div img {
+    width: 20px;
+    height: 20px;
+}
+.profile-detail img.profile-pic {
+    width: 60px;
+    height: 70px;
+}
+.save-cancel {
+    position: sticky;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 30px;
+    top: 60vh;
+    margin-bottom: 50px;
+    background-color: #fff;
+    padding: 15px 8px;
+}
+.save-cancel button {
+    padding: 8px 35px;
+    color: #fff;
+    background-color: rgb(3, 197, 103);
+}
+.save-cancel button:first-child {
+    background-color: rgb(248, 62, 62);
+}
+.category {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.education,
+.work-experience,
+.skills,
+.awards,
+.languages {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    padding-left: 0;
+}
+.education div,
+.work-experience div,
+.skills div,
+.awards div,
+.languages div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+div.address,
+div.time {
+    flex-direction: row;
+    justify-content: space-between;
+}
+input {
+    max-width: 280px;
+    font-family: inherit;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 10px;
+    background-color: #f0eeeb;
+}
+input#degree,
+input#school {
+    max-width: 100%;
+    width: 90%;
+}
+select {
+    padding: 12px;
+    background-color: #f0eeeb;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    width: 300px;
 }

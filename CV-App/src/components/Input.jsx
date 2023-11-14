@@ -10,6 +10,7 @@ import { v4 as uuid } from "uuid";
 
 export default function Input() {
     const [personalInfo, setPersonalInfo] = useState({
+        id: uuid(),
         fullName: "",
         email: "",
         tel: "",
@@ -21,231 +22,498 @@ export default function Input() {
     const [awards, setAwards] = useState([]);
     const [skills, setSkills] = useState([]);
     const [languages, setLanguages] = useState([]);
-    const [activeInputField, setActiveInputField] = useState();
+    const [activeInputField, setActiveInputField] = useState({});
     function consoleData() {
-        console.log(activeInputField);
+        console.log(educationInfo);
     }
 
-    function handlePersonalInfoChange(event) {
-        const { value, name } = event.target;
-        setPersonalInfo((personalInfo) => ({ ...personalInfo, [name]: value }));
-    }
-    function handleEducationInfoChange(event) {
-        const { value, name } = event.target;
-        setEducationInfo((schools) => {
-            return schools.map((school) => {
-                return school.id === activeInputField.id
-                    ? {
-                          ...school,
-                          [name]: value,
-                      }
-                    : school;
-            });
-        });
-    }
-    function handleWorkExperienceInfoChange(event) {
-        const { value, name } = event.target;
-        setWorkExperience((prevData) =>
-            prevData.map((work) =>
-                work.id === activeInputField.id
-                    ? { ...work, [name]: value }
-                    : work
-            )
-        );
-    }
-    function handleAwardsChange(event) {
-        const { value, name } = event.target;
-        setAwards((prevAwards) => {
-            return prevAwards.map((award) => {
-                return award.id === activeInputField.id
-                    ? { ...award, [name]: value }
-                    : award;
-            });
-        });
-    }
-    function handleSkillInfoChange(event) {
-        const { name, value } = event.target;
-        setSkills((prevSkills) =>
-            prevSkills.map((skill) =>
-                skill.id === activeInputField.id
-                    ? { ...skill, [name]: value }
-                    : skill
-            )
-        );
-    }
-    function handleLanguageChange(event) {
-        const { name, value } = event.target;
-        setSkills((prevLangs) =>
-            prevLangs.map((lang) =>
-                lang.id === activeInputField.id
-                    ? { ...lang, [name]: value }
-                    : lang
-            )
-        );
-    }
-    function addSchool(event) {
-        event.preventDefault();
+    function addSchool() {
         const newSchool = {
             id: uuid(),
-            fullName: "",
-            email: "",
-            tel: "",
-            location: "",
-            job: "",
+            degree: "",
+            school: "",
+            city: "",
+            country: "",
+            startDate: "",
+            endDate: "",
         };
-        setEducationInfo((prevSchool) => [...prevSchool, newSchool]);
         setActiveInputField(newSchool);
     }
-    function addAward(event) {
-        event.preventDefault();
+    function addExperience() {
+        const newExperience = {
+            id: uuid(),
+            jobTitle: "",
+            employer: "",
+            city: "",
+            country: "",
+            startDate: "",
+            endDate: "",
+        };
+        setActiveInputField(newExperience);
+    }
+    function addAward() {
         const newAward = {
             id: uuid(),
             name: "",
             issuer: "",
             date: "",
         };
-        setAwards((awards) => [...awards, newAward]);
+
         setActiveInputField(newAward);
     }
-    function addSkills(event) {
-        event.preventDefault();
+    function addSkill() {
         const newSkill = {
             id: uuid(),
             skill: "",
             level: "",
         };
-        setSkills((prevSkills) => [...prevSkills, newSkill]);
+
         setActiveInputField(newSkill);
     }
-    function addLang(event) {
-        event.preventDefault();
+    function addLanguage() {
         const newLang = {
             id: uuid(),
             language: "",
             extraInfo: "",
             level: "",
         };
-        setSkills((prevLangs) => [...prevLangs, newLang]);
         setActiveInputField(newLang);
     }
     function handleChange(event) {
         const { name, value } = event.target;
         setActiveInputField((prevData) => ({ ...prevData, [name]: value }));
     }
+    function cancelUserInput() {
+        setActiveInputField(() => {});
+    }
+    function saveUserInput() {
+        if (activeInputField.hasOwnProperty("fullName")) {
+            setPersonalInfo((prevData) => ({
+                ...prevData,
+                ...activeInputField,
+            }));
+        } else if (activeInputField.hasOwnProperty("school")) {
+            educationInfo.every((school) => school.id !== activeInputField.id)
+                ? setEducationInfo((prevSchools) => [
+                      ...prevSchools,
+                      activeInputField,
+                  ])
+                : setEducationInfo((prevSchools) => {
+                      return prevSchools.map((school) =>
+                          school.id === activeInputField.id
+                              ? activeInputField
+                              : school
+                      );
+                  });
+        } else if (activeInputField.hasOwnProperty("employer")) {
+            workExperience.every((work) => work.id !== activeInputField.id)
+                ? setWorkExperience((prevWorks) => [
+                      ...prevWorks,
+                      activeInputField,
+                  ])
+                : setWorkExperience((prevWorks) => {
+                      return prevWorks.map((work) =>
+                          work.id === activeInputField.id
+                              ? activeInputField
+                              : work
+                      );
+                  });
+        } else if (activeInputField.hasOwnProperty("issuer")) {
+            awards.every((award) => award.id !== activeInputField.id)
+                ? setAwards((prevAwards) => [...prevAwards, activeInputField])
+                : setAwards((prevAwards) => {
+                      return prevAwards.map((award) =>
+                          award.id === activeInputField.id
+                              ? activeInputField
+                              : award
+                      );
+                  });
+        } else if (activeInputField.hasOwnProperty("language")) {
+            languages.every((language) => language.id !== activeInputField.id)
+                ? setLanguages((prevLanguages) => [
+                      ...prevLanguages,
+                      activeInputField,
+                  ])
+                : setLanguages((prevLanguages) => {
+                      return prevLanguages.map((language) =>
+                          language.id === activeInputField.id
+                              ? activeInputField
+                              : language
+                      );
+                  });
+        } else {
+            skills.every((skill) => skill.id !== activeInputField.id)
+                ? setSkills((prevSkills) => [...prevSkills, activeInputField])
+                : setSkills((prevSkills) => {
+                      return prevSkills.map((skill) =>
+                          skill.id === activeInputField.id
+                              ? activeInputField
+                              : skill
+                      );
+                  });
+        }
 
-    console.log(activeInputField);
-
+        setActiveInputField(() => {});
+    }
     return (
         <>
             <div className="input-fields">
                 <InputGroup
                     src="/profile-black.svg"
                     title="Personal Information"
+                    saveUserData={saveUserInput}
+                    cancelUserData={cancelUserInput}
+                    savedFullName={personalInfo.fullName || "Your Name"}
+                    savedEmail={personalInfo.email || "Email"}
+                    savedTel={personalInfo.tel || "Phone"}
+                    savedLocation={personalInfo.location || "Address"}
+                    setActive={setActiveInputField}
+                    active={activeInputField}
                 >
                     {
                         <div className="expanded">
                             <h2>Personal Information</h2>
-                            {Object.values(personalInfo).every(
-                                (value) => value === ""
-                            ) ? (
-                                <PersonalInfo
-                                    setActive={setActiveInputField}
-                                    field={personalInfo}
-                                    active={activeInputField}
-                                    email={personalInfo.email}
-                                    tel={personalInfo.tel}
-                                    location={personalInfo.location}
-                                    job={personalInfo.job}
-                                    handleChange={handleChange}
-                                />
-                            ) : (
-                                <div>
-                                    <h3>{personalInfo.fullName}</h3>
-                                    <p>{personalInfo.email}</p>
-                                    <p>{personalInfo.tel}</p>
-                                    <p>{personalInfo.location}</p>
-                                </div>
-                            )}
+                            <PersonalInfo
+                                setActive={setActiveInputField}
+                                field={personalInfo}
+                                active={activeInputField}
+                                handleChange={handleChange}
+                            />
+                            <div
+                                className="save-cancel"
+                                style={{
+                                    display: "flex",
+                                }}
+                            >
+                                <button onClick={cancelUserInput}>
+                                    Cancel
+                                </button>
+                                <button onClick={saveUserInput}>Save</button>
+                            </div>
                         </div>
                     }
                 </InputGroup>
-                <InputGroup src="/education-cap-black.svg" title="Education" />
+                <InputGroup
+                    src="/education-cap-black.svg"
+                    title="Education"
+                    add={addSchool}
+                    saveUserData={saveUserInput}
+                    cancelUserData={cancelUserInput}
+                    active={activeInputField}
+                >
+                    {
+                        <>
+                            <h2>Education</h2>
+                            {educationInfo.length === 0 ? (
+                                <>
+                                    <Education
+                                        field={educationInfo}
+                                        setActive={setActiveInputField}
+                                        active={activeInputField}
+                                        handleChange={handleChange}
+                                    />
+                                    <div
+                                        className="save-cancel"
+                                        style={{
+                                            display: "flex",
+                                        }}
+                                    >
+                                        <button onClick={cancelUserInput}>
+                                            Cancel
+                                        </button>
+                                        <button onClick={saveUserInput}>
+                                            Save
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div>
+                                    {educationInfo.map((school) => (
+                                        <div
+                                            key={school.id}
+                                            className="school"
+                                            id={school.id}
+                                        >
+                                            <div>
+                                                <span>
+                                                    <strong>
+                                                        {school.degree},
+                                                    </strong>
+
+                                                    <em>
+                                                        &nbsp;{school.school}
+                                                    </em>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <small>
+                                                    {school.city},&nbsp;
+                                                    {school.country}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <button onClick={addSchool}>
+                                        Add School
+                                    </button>
+                                </div>
+                            )}
+                        </>
+                    }
+                </InputGroup>
                 <InputGroup
                     src="/briefcase-black.svg"
                     title="Professional Experience"
-                />
-                <InputGroup src="/awards-black.svg" title="Awards/Honors" />
-                <InputGroup src="/skill-black.svg" title="Skills" />
-                <InputGroup src="/language-black.svg" title="Languages" />
+                    add={addExperience}
+                    saveUserData={saveUserInput}
+                    cancelUserData={cancelUserInput}
+                    active={activeInputField}
+                >
+                    {
+                        <>
+                            <h2>Work Experience</h2>
+                            {workExperience.length === 0 ? (
+                                <>
+                                    <WorkExperience
+                                        field={workExperience}
+                                        active={activeInputField}
+                                        handleChange={handleChange}
+                                    />
+                                    <div
+                                        className="save-cancel"
+                                        style={{
+                                            display: "flex",
+                                        }}
+                                    >
+                                        <button onClick={cancelUserInput}>
+                                            Cancel
+                                        </button>
+                                        <button onClick={saveUserInput}>
+                                            Save
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div>
+                                    {workExperience.map((work) => (
+                                        <div
+                                            key={work.id}
+                                            className="work"
+                                            id={work.id}
+                                        >
+                                            <div>
+                                                <span>
+                                                    <strong>
+                                                        {work.jobTitle},
+                                                    </strong>
+
+                                                    <em>
+                                                        &nbsp;{work.employer}
+                                                    </em>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <small>
+                                                    {work.city},&nbsp;
+                                                    {work.country}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <button onClick={addExperience}>
+                                        Add Experience
+                                    </button>
+                                </div>
+                            )}
+                        </>
+                    }
+                </InputGroup>
+                <InputGroup
+                    src="/skill-black.svg"
+                    title="Skills"
+                    add={addSkill}
+                    saveUserData={saveUserInput}
+                    cancelUserData={cancelUserInput}
+                    active={activeInputField}
+                >
+                    {
+                        <>
+                            <h2>Skills</h2>
+                            {skills.length === 0 ? (
+                                <>
+                                    {" "}
+                                    <Skills
+                                        field={skills}
+                                        active={activeInputField}
+                                        handleChange={handleChange}
+                                    />
+                                    <div
+                                        className="save-cancel"
+                                        style={{
+                                            display: "flex",
+                                        }}
+                                    >
+                                        <button onClick={cancelUserInput}>
+                                            Cancel
+                                        </button>
+                                        <button onClick={saveUserInput}>
+                                            Save
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div>
+                                    {skills.map((skill) => (
+                                        <div
+                                            key={skill.id}
+                                            className="skill"
+                                            id={skill.id}
+                                        >
+                                            <div>
+                                                <span>
+                                                    <strong>
+                                                        {skill.skill},
+                                                    </strong>
+
+                                                    <em>&nbsp;{skill.level}</em>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <button onClick={addSkill}>
+                                        Add Skill
+                                    </button>
+                                </div>
+                            )}
+                        </>
+                    }
+                </InputGroup>
+                <InputGroup
+                    src="/awards-black.svg"
+                    title="Awards/Honors"
+                    add={addAward}
+                    saveUserData={saveUserInput}
+                    cancelUserData={cancelUserInput}
+                    active={activeInputField}
+                >
+                    {
+                        <>
+                            <h2>Awards/Honors</h2>
+                            {awards.length === 0 ? (
+                                <>
+                                    <Awards
+                                        field={awards}
+                                        active={activeInputField}
+                                        handleChange={handleChange}
+                                    />
+                                    <div
+                                        className="save-cancel"
+                                        style={{
+                                            display: "flex",
+                                        }}
+                                    >
+                                        <button onClick={cancelUserInput}>
+                                            Cancel
+                                        </button>
+                                        <button onClick={saveUserInput}>
+                                            Save
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div>
+                                    {awards.map((award) => (
+                                        <div
+                                            key={award.id}
+                                            className="award"
+                                            id={award.id}
+                                        >
+                                            <div>
+                                                <span>
+                                                    <strong>
+                                                        {award.name},
+                                                    </strong>
+
+                                                    <em>
+                                                        &nbsp;{award.issuer}
+                                                    </em>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <small>{award.date}</small>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <button onClick={addAward}>
+                                        Add Award
+                                    </button>
+                                </div>
+                            )}
+                        </>
+                    }
+                </InputGroup>
+                <InputGroup
+                    src="/language-black.svg"
+                    title="Languages"
+                    add={addLanguage}
+                    saveUserData={saveUserInput}
+                    cancelUserData={cancelUserInput}
+                    active={activeInputField}
+                >
+                    {
+                        <>
+                            <h2>Languages</h2>
+                            {languages.length === 0 ? (
+                                <>
+                                    <Languages
+                                        field={languages}
+                                        active={activeInputField}
+                                        handleChange={handleChange}
+                                    />
+                                    <div
+                                        className="save-cancel"
+                                        style={{
+                                            display: "flex",
+                                        }}
+                                    >
+                                        <button onClick={cancelUserInput}>
+                                            Cancel
+                                        </button>
+                                        <button onClick={saveUserInput}>
+                                            Save
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div>
+                                    {languages.map((language) => (
+                                        <div
+                                            key={language.id}
+                                            className="language"
+                                            id={language.id}
+                                        >
+                                            <div>
+                                                <span>
+                                                    <strong>
+                                                        {language.language},
+                                                    </strong>
+
+                                                    <em>
+                                                        &nbsp;{language.level}
+                                                    </em>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <button onClick={addLanguage}>
+                                        Add Language
+                                    </button>
+                                </div>
+                            )}
+                        </>
+                    }
+                </InputGroup>
                 <button className={consoleData}>Console</button>
-                {/*<PersonalInfo
-                    fullName={personalInfo.fullName}
-                    email={personalInfo.email}
-                    tel={personalInfo.tel}
-                    location={personalInfo.location}
-                    job={personalInfo.job}
-                    handleChange={handlePersonalInfoChange}
-                />
-                {educationInfo.map((school) => (
-                    <Education
-                        key={school.id}
-                        field={school}
-                        setActive={setActiveInputField}
-                        degree={school.degree}
-                        school={school.school}
-                        city={school.city}
-                        country={school.country}
-                        startDate={school.startDate}
-                        endDate={school.endDate}
-                        handleChange={handleEducationInfoChange}
-                    />
-                ))}
-                {workExperience.map((work) => (
-                    <WorkExperience
-                        key={work.id}
-                        field={work}
-                        setActive={setActiveInputField}
-                        employer={work.employer}
-                        city={work.city}
-                        country={work.country}
-                        startDate={work.startDate}
-                        endDate={work.endDate}
-                        description={work.description}
-                        handleChange={handleWorkExperienceInfoChange}
-                    />
-                ))}
-                {awards.map((award) => (
-                    <Awards
-                        key={award.id}
-                        field={award}
-                        setActive={setActiveInputField}
-                        name={award.name}
-                        issuer={award.issuer}
-                        date={award.date}
-                        handleChange={handleAwardsChange}
-                    />
-                ))}
-                {skills.map((skill) => (
-                    <Skills
-                        key={skill.id}
-                        field={skill}
-                        setActive={setActiveInputField}
-                        skill={skill.skill}
-                        level={skill.level}
-                        handleChange={handleSkillInfoChange}
-                    />
-                ))}
-                {languages.map((lang) => (
-                    <Languages
-                        key={lang.id}
-                        field={lang}
-                        setActive={setActiveInputField}
-                        language={lang.language}
-                        extraInfo={lang.extraInfo}
-                        level={lang.level}
-                        handleChange={handleLanguageChange}
-                    />
-                ))}*/}
             </div>
         </>
     );
