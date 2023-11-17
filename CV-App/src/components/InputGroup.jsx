@@ -2,11 +2,9 @@ import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
 
 export default function InputGroup(props) {
-    const [expand, setExpand] = useState(false);
-
     return (
         <div className="input-group">
-            {expand ? (
+            {props.expandedField === props.title ? (
                 <>
                     <div className="list--header">
                         <img src={props.src} alt="" />
@@ -16,13 +14,10 @@ export default function InputGroup(props) {
                             className="fold-up"
                             alt=""
                             onClick={(event) => {
-                                setExpand((prevState) =>
-                                    prevState ? false : true
-                                );
+                                props.setExpandedField(() => "");
                             }}
                         />
                     </div>
-
                     {props.children}
                 </>
             ) : props.title === "Personal Information" ? (
@@ -101,9 +96,7 @@ export default function InputGroup(props) {
                         className="drop-down"
                         alt=""
                         onClick={() => {
-                            setExpand((prevState) =>
-                                prevState ? false : true
-                            );
+                            props.setExpandedField(props.title);
                             props.field.length === 0 ? props.add() : false;
                         }}
                     />

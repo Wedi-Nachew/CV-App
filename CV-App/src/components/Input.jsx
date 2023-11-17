@@ -23,9 +23,7 @@ export default function Input() {
     const [skills, setSkills] = useState([]);
     const [languages, setLanguages] = useState([]);
     const [activeInputField, setActiveInputField] = useState({});
-    function consoleData() {
-        console.log(educationInfo);
-    }
+    const [expandedField, setExpandedField] = useState();
 
     function addSchool() {
         const newSchool = {
@@ -203,6 +201,8 @@ export default function Input() {
                     cancelUserData={cancelUserInput}
                     field={educationInfo}
                     active={activeInputField}
+                    expandedField={expandedField}
+                    setExpandedField={setExpandedField}
                 >
                     {
                         <div>
@@ -276,6 +276,8 @@ export default function Input() {
                     cancelUserData={cancelUserInput}
                     field={workExperience}
                     active={activeInputField}
+                    expandedField={expandedField}
+                    setExpandedField={setExpandedField}
                 >
                     {
                         <>
@@ -348,6 +350,8 @@ export default function Input() {
                     cancelUserData={cancelUserInput}
                     field={skills}
                     active={activeInputField}
+                    expandedField={expandedField}
+                    setExpandedField={setExpandedField}
                 >
                     {
                         <>
@@ -412,6 +416,8 @@ export default function Input() {
                     cancelUserData={cancelUserInput}
                     field={awards}
                     active={activeInputField}
+                    expandedField={expandedField}
+                    setExpandedField={setExpandedField}
                 >
                     {
                         <>
@@ -481,6 +487,8 @@ export default function Input() {
                     cancelUserData={cancelUserInput}
                     field={languages}
                     active={activeInputField}
+                    expandedField={expandedField}
+                    setExpandedField={setExpandedField}
                 >
                     {
                         <>
@@ -539,7 +547,6 @@ export default function Input() {
                         </>
                     }
                 </InputGroup>
-                <button className={consoleData}>Console</button>
             </div>
         </>
     );
