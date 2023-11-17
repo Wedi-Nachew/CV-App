@@ -136,11 +136,14 @@ nav ul li {
 }
 .input-fields > div {
     display: flex;
-    padding: 20px 60px;
     width: 50%;
     position: relative;
     flex-direction: column;
+}
+.input-fields h2 {
     background-color: #fff;
+    padding: 20px 60px;
+    margin-bottom: 0;
 }
 .input-fields div img {
     width: 30px;
@@ -246,14 +249,13 @@ input#location {
     height: 70px;
 }
 .save-cancel {
-    position: sticky;
     flex-direction: row;
     justify-content: flex-end;
     gap: 30px;
-    top: 60vh;
     margin-bottom: 50px;
     background-color: #fff;
     padding: 15px 8px;
+    margin-top: 35px;
 }
 .save-cancel button {
     padding: 8px 35px;
@@ -268,8 +270,16 @@ input#location {
     align-items: center;
     gap: 10px;
     background-color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 15px 20px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 1px 7px;
+    gap: 20px;
+}
+.category h2 {
+    padding: 0;
+    margin-top: 0;
+    color: #000;
+    font-size: 1.4rem;
 }
 .education,
 .work-experience,
@@ -280,6 +290,8 @@ input#location {
     flex-direction: column;
     gap: 17px;
     padding-left: 0;
+    background-color: #fff;
+    padding: 20px 60px;
 }
 .education div,
 .work-experience div,
@@ -296,7 +308,7 @@ div.time {
     justify-content: space-between;
 }
 input {
-    max-width: 280px;
+    max-width: 230px;
     font-family: inherit;
     border: none;
     border-radius: 10px;
@@ -304,7 +316,10 @@ input {
     background-color: #f0eeeb;
 }
 input#degree,
-input#school {
+input#school,
+input#job-title,
+input#employer,
+input#skill {
     max-width: 100%;
     width: 90%;
 }
@@ -314,5 +329,65 @@ select {
     border: none;
     border-radius: 10px;
     font-family: inherit;
-    width: 300px;
+    width: 93%;
+}
+
+.list-container {
+    background-color: #f0eeeb;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.list-container > div:last-child {
+    margin-top: 5px;
+    border-radius: 3px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list-container > div:last-child div {
+    background-color: #f0eeeb;
+    border-radius: 20px;
+}
+.list-container button {
+    padding: 10px 25px;
+    background-color: #fff;
+    margin: 4px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 1px 7px;
+}
+.list--header {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+.list--header h2 {
+    padding: 0;
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+.list--header .fold-up {
+    margin-left: auto;
+    transform: rotate(180deg);
+}
+.school,
+.work,
+.skill,
+.language,
+.award {
+    background-color: #fff;
+    padding: 10px 20px;
+}
+.input-group {
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 1px 7px;
+    background-color: #fff;
+    border-radius: 20px;
 }

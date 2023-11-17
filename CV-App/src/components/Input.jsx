@@ -37,7 +37,8 @@ export default function Input() {
             startDate: "",
             endDate: "",
         };
-        setActiveInputField(newSchool);
+
+        setActiveInputField(() => newSchool);
     }
     function addExperience() {
         const newExperience = {
@@ -84,7 +85,7 @@ export default function Input() {
         setActiveInputField((prevData) => ({ ...prevData, [name]: value }));
     }
     function cancelUserInput() {
-        setActiveInputField(() => {});
+        setActiveInputField(() => ({}));
     }
     function saveUserInput() {
         if (activeInputField.hasOwnProperty("fullName")) {
@@ -153,8 +154,9 @@ export default function Input() {
                   });
         }
 
-        setActiveInputField(() => {});
+        setActiveInputField(() => ({}));
     }
+    console.log(activeInputField);
     return (
         <>
             <div className="input-fields">
@@ -172,7 +174,7 @@ export default function Input() {
                 >
                     {
                         <div className="expanded">
-                            <h2>Personal Information</h2>
+                            <h2>Create Personal Info</h2>
                             <PersonalInfo
                                 setActive={setActiveInputField}
                                 field={personalInfo}
@@ -199,13 +201,14 @@ export default function Input() {
                     add={addSchool}
                     saveUserData={saveUserInput}
                     cancelUserData={cancelUserInput}
+                    field={educationInfo}
                     active={activeInputField}
                 >
                     {
-                        <>
-                            <h2>Education</h2>
-                            {educationInfo.length === 0 ? (
+                        <div>
+                            {Object.keys(activeInputField).length !== 0 ? (
                                 <>
+                                    <h2>Create Education</h2>
                                     <Education
                                         field={educationInfo}
                                         setActive={setActiveInputField}
@@ -227,7 +230,7 @@ export default function Input() {
                                     </div>
                                 </>
                             ) : (
-                                <div>
+                                <div className="list-container">
                                     {educationInfo.map((school) => (
                                         <div
                                             key={school.id}
@@ -253,12 +256,16 @@ export default function Input() {
                                             </div>
                                         </div>
                                     ))}
-                                    <button onClick={addSchool}>
-                                        Add School
-                                    </button>
+                                    <div>
+                                        <div>
+                                            <button onClick={addSchool}>
+                                                Add School
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
-                        </>
+                        </div>
                     }
                 </InputGroup>
                 <InputGroup
@@ -267,13 +274,14 @@ export default function Input() {
                     add={addExperience}
                     saveUserData={saveUserInput}
                     cancelUserData={cancelUserInput}
+                    field={workExperience}
                     active={activeInputField}
                 >
                     {
                         <>
-                            <h2>Work Experience</h2>
-                            {workExperience.length === 0 ? (
+                            {Object.keys(activeInputField).length !== 0 ? (
                                 <>
+                                    <h2>Create Work Experience</h2>
                                     <WorkExperience
                                         field={workExperience}
                                         active={activeInputField}
@@ -294,7 +302,7 @@ export default function Input() {
                                     </div>
                                 </>
                             ) : (
-                                <div>
+                                <div className="list-container">
                                     {workExperience.map((work) => (
                                         <div
                                             key={work.id}
@@ -320,9 +328,13 @@ export default function Input() {
                                             </div>
                                         </div>
                                     ))}
-                                    <button onClick={addExperience}>
-                                        Add Experience
-                                    </button>
+                                    <div>
+                                        <div>
+                                            <button onClick={addExperience}>
+                                                Add Experience
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </>
@@ -334,14 +346,14 @@ export default function Input() {
                     add={addSkill}
                     saveUserData={saveUserInput}
                     cancelUserData={cancelUserInput}
+                    field={skills}
                     active={activeInputField}
                 >
                     {
                         <>
-                            <h2>Skills</h2>
-                            {skills.length === 0 ? (
+                            {Object.keys(activeInputField).length !== 0 ? (
                                 <>
-                                    {" "}
+                                    <h2>Create Skill</h2>
                                     <Skills
                                         field={skills}
                                         active={activeInputField}
@@ -362,7 +374,7 @@ export default function Input() {
                                     </div>
                                 </>
                             ) : (
-                                <div>
+                                <div className="list-container">
                                     {skills.map((skill) => (
                                         <div
                                             key={skill.id}
@@ -380,9 +392,13 @@ export default function Input() {
                                             </div>
                                         </div>
                                     ))}
-                                    <button onClick={addSkill}>
-                                        Add Skill
-                                    </button>
+                                    <div>
+                                        <div>
+                                            <button onClick={addSkill}>
+                                                Add Skill
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </>
@@ -394,13 +410,14 @@ export default function Input() {
                     add={addAward}
                     saveUserData={saveUserInput}
                     cancelUserData={cancelUserInput}
+                    field={awards}
                     active={activeInputField}
                 >
                     {
                         <>
-                            <h2>Awards/Honors</h2>
-                            {awards.length === 0 ? (
+                            {Object.keys(activeInputField).length !== 0 ? (
                                 <>
+                                    <h2>Create Award/Honor</h2>
                                     <Awards
                                         field={awards}
                                         active={activeInputField}
@@ -421,7 +438,7 @@ export default function Input() {
                                     </div>
                                 </>
                             ) : (
-                                <div>
+                                <div className="list-container">
                                     {awards.map((award) => (
                                         <div
                                             key={award.id}
@@ -444,9 +461,13 @@ export default function Input() {
                                             </div>
                                         </div>
                                     ))}
-                                    <button onClick={addAward}>
-                                        Add Award
-                                    </button>
+                                    <div>
+                                        <div>
+                                            <button onClick={addAward}>
+                                                Add Award
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </>
@@ -458,13 +479,14 @@ export default function Input() {
                     add={addLanguage}
                     saveUserData={saveUserInput}
                     cancelUserData={cancelUserInput}
+                    field={languages}
                     active={activeInputField}
                 >
                     {
                         <>
-                            <h2>Languages</h2>
-                            {languages.length === 0 ? (
+                            {Object.keys(activeInputField).length !== 0 ? (
                                 <>
+                                    <h2>Create Language</h2>
                                     <Languages
                                         field={languages}
                                         active={activeInputField}
@@ -485,7 +507,7 @@ export default function Input() {
                                     </div>
                                 </>
                             ) : (
-                                <div>
+                                <div className="list-container">
                                     {languages.map((language) => (
                                         <div
                                             key={language.id}
@@ -505,9 +527,13 @@ export default function Input() {
                                             </div>
                                         </div>
                                     ))}
-                                    <button onClick={addLanguage}>
-                                        Add Language
-                                    </button>
+                                    <div>
+                                        <div>
+                                            <button onClick={addLanguage}>
+                                                Add Language
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </>

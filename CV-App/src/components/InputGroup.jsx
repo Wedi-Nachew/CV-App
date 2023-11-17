@@ -7,7 +7,24 @@ export default function InputGroup(props) {
     return (
         <div className="input-group">
             {expand ? (
-                <>{props.children}</>
+                <>
+                    <div className="list--header">
+                        <img src={props.src} alt="" />
+                        <h2>{props.title}</h2>
+                        <img
+                            src="/drop-down.svg"
+                            className="fold-up"
+                            alt=""
+                            onClick={(event) => {
+                                setExpand((prevState) =>
+                                    prevState ? false : true
+                                );
+                            }}
+                        />
+                    </div>
+
+                    {props.children}
+                </>
             ) : props.title === "Personal Information" ? (
                 <div className="profile-detail">
                     <div>
@@ -83,11 +100,11 @@ export default function InputGroup(props) {
                         src="/drop-down.svg"
                         className="drop-down"
                         alt=""
-                        onClick={(event) => {
+                        onClick={() => {
                             setExpand((prevState) =>
                                 prevState ? false : true
                             );
-                            props.add && props.add();
+                            props.field.length === 0 ? props.add() : false;
                         }}
                     />
                 </div>
