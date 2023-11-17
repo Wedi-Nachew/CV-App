@@ -3,7 +3,13 @@ import PersonalInfo from "./PersonalInfo";
 
 export default function InputGroup(props) {
     return (
-        <div className="input-group">
+        <div
+            className={
+                props.expandedField === props.title
+                    ? "input-group expanded"
+                    : "input-group"
+            }
+        >
             {props.expandedField === props.title ? (
                 <>
                     <div className="list--header">

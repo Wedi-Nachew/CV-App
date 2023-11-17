@@ -160,7 +160,7 @@ nav ul li {
     background-color: #fff;
 }
 .expanded h2 {
-    margin: 8px;
+    margin-top: 12px;
     align-self: flex-start;
 }
 .personal-info {
@@ -252,10 +252,11 @@ input#location {
     flex-direction: row;
     justify-content: flex-end;
     gap: 30px;
-    margin-bottom: 50px;
     background-color: #fff;
     padding: 15px 8px;
-    margin-top: 35px;
+    margin-top: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 .save-cancel button {
     padding: 8px 35px;
@@ -390,4 +391,9 @@ select {
     box-shadow: rgba(0, 0, 0, 0.05) 2px 1px 7px;
     background-color: #fff;
     border-radius: 20px;
+}
+.list--header + div {
+    background-color: #f0eeeb;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
